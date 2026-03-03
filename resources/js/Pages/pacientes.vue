@@ -37,9 +37,9 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y">
-              <tr v-for="paciente in pacientes.data" :key="paciente.id" class="text-gray-700">
+              <tr v-for="paciente, i in pacientes.data" :key="paciente.id" class="text-gray-700">
                 <td class="px-4 py-3 text-sm">
-                  {{ paciente.id }}
+                  {{ i + 1 }}
                 </td>
                 <td class="px-4 py-3 text-sm font-semibold">
                   {{ paciente.cedula }}

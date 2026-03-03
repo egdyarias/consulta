@@ -12,28 +12,16 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Profile" />
+    <Head title="Perfil" />
 
     <AuthenticatedLayout>
         <template #header>
-            Profile
+            Perfil
         </template>
 
         <div class="sm:px-6 md:px-0 lg:px-0 space-y-6">
           <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-            <UpdateProfileInformationForm
-                :must-verify-email="mustVerifyEmail"
-                :status="status"
-                class="max-w-xl"
-            />
-          </div>
-
-          <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
             <UpdatePasswordForm class="max-w-xl" />
-          </div>
-
-          <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-            <DeleteUserForm class="max-w-xl" />
           </div>
         </div>
     </AuthenticatedLayout>

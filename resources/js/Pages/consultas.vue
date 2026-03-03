@@ -73,6 +73,7 @@
           <table class="w-full whitespace-no-wrap">
             <thead>
               <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-sky-700 border-b">
+                <th class="px-4 py-3">#</th>
                 <th class="px-4 py-3">Paciente</th>
                 <th class="px-4 py-3">Motivo de Consulta</th>
                 <th class="px-4 py-3">Pago en BS</th>
@@ -81,7 +82,10 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y">
-              <tr v-for="consulta in consultas.data" :key="consulta.id" class="text-gray-700">
+              <tr v-for="consulta, i in consultas.data" :key="consulta.id" class="text-gray-700">
+                <td class="px-4 py-3 text-sm">
+                  {{ i + 1 }}
+              </td>
                 <td class="px-4 py-3 text-sm  font-semibold">
                   {{ consulta.paciente.nombres }} {{ consulta.paciente.apellidos }}
                 </td>
