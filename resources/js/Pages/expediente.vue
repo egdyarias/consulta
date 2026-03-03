@@ -45,8 +45,8 @@
               <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-sky-700 border-b">
                 <th class="px-4 py-3">Fecha</th>
                 <th class="px-4 py-3">Motivo</th>
-                <th class="px-4 py-3">Monto Bs</th>
-                <th class="px-4 py-3">Monto USD</th>
+                <!--<th class="px-4 py-3">Monto Bs</th>
+                <th class="px-4 py-3">Monto USD</th>-->
                 <th class="px-4 py-3 flex justify-center">Opciones</th>
               </tr>
             </thead>
@@ -58,12 +58,12 @@
                 <td class="px-4 py-3 text-sm font-semibold">
                   {{ consulta.motivo }}
                 </td>
-                <td class="px-4 py-3 text-sm">
+                <!--<td class="px-4 py-3 text-sm">
                   {{ consulta.monto_bs > 0 ? consulta.monto_bs + ' REF' : 'N/A' }}
                 </td>
                 <td class="px-4 py-3 text-sm ">
                   {{ consulta.monto_usd > 0 ? consulta.monto_usd + ' USD' : 'N/A' }}
-                </td>
+                </td>-->
                 <td class="px-4 py-3 text-sm flex justify-center gap-2">
                   <WarningButton @click="openModalForm(2, consulta)">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

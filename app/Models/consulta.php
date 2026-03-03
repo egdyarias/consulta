@@ -13,7 +13,7 @@ class consulta extends Model
 
     public function paciente()
 {
-    return $this->belongsTo(Paciente::class, 'paciente_id');
+    return $this->belongsTo(paciente::class, 'paciente_id');
 }
 
     protected $fillable = ['id','paciente_id', 'motivo', 'monto_bs', 'monto_usd', 'created_at', 'updated_at'];

@@ -9,10 +9,24 @@ use Inertia\Inertia;
 
 class PacienteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $query = paciente::query();
+
+        $search = strtoupper($request->input('search'));
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('cedula', 'like', "%{$search}%")
+                  ->orWhere('nombres', 'like', "%{$search}%")
+                  ->orWhere('apellidos', 'like', "%{$search}%");
+            });
+        }
+
+        $pacientes = $query->paginate()->appends(['search' => $search]);
+
         return Inertia::render('pacientes', [
-            'pacientes' => paciente::paginate()
+            'pacientes' => $pacientes,
+            'search' => $search,
         ]);
     }
 

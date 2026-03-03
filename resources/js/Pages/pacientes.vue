@@ -17,6 +17,14 @@
     <div class="p-4 bg-white rounded-lg shadow-xs">
 
       <div class="overflow-hidden mb-8 w-full rounded-lg border shadow-xs">
+          <div class="p-4">
+            <form @submit.prevent="submitSearch" class="flex gap-2 items-center">
+              <input v-model="searchForm.search" type="text" placeholder="Buscar por cédula, nombre o apellido"
+                class="w-full border rounded px-3 py-2" />
+              <button type="submit" class="bg-sky-700 text-white px-3 py-2 rounded">Buscar</button>
+              <button type="button" @click="clearSearch" class="px-3 py-2 border rounded">Limpiar</button>
+            </form>
+          </div>
         <div class="overflow-x-auto w-full">
           <table class="w-full whitespace-no-wrap">
             <thead>
@@ -250,7 +258,11 @@ import WarningButton from '@/Components/WarningButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 
 const props = defineProps({
-  pacientes: Object
+  pacientes: Object,
+  search: {
+    type: String,
+    default: ''
+  }
 })
 
 const form = useForm({
@@ -262,6 +274,19 @@ const form = useForm({
   telefono: '',
   referido: ''
 });
+
+// Search form for filtering pacientes
+const searchForm = useForm({ search: props.search || '' });
+
+const submitSearch = () => {
+  // perform GET via Inertia to preserve SPA behavior
+  searchForm.get(route('pacientes.index'), { preserveState: true, replace: true });
+}
+
+const clearSearch = () => {
+  searchForm.search = '';
+  submitSearch();
+}
 
 const v = ref({ id: '', nombres: ''});
 
