@@ -14,7 +14,7 @@ class ExpedienteController extends Controller
         return Inertia::render('expediente', [
             'paciente' => paciente::where('id', $id)->get(),
             'expediente' => expediente::where('paciente_id', $id)->get(),
-            'consultas' => consulta::where('paciente_id', $id)->paginate(5),
+            'consultas' => consulta::where('paciente_id', $id)->paginate(3),
         ]);
     }
 
