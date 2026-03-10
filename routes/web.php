@@ -6,6 +6,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConsolidadoController;
+use App\Http\Controllers\MovimientoController;
 use App\Models\consulta;
 use App\Models\paciente;
 use Illuminate\Foundation\Application;
@@ -55,7 +56,14 @@ Route::middleware('auth')->group(function () {
     Route::get('consultas2', [ConsultaController::class, 'index2'])->name('consultas.index2');
     Route::get('consultasfecha2/{fecha}', [ConsultaController::class, 'indexdate2'])->name('consultas.fecha2');
 
+    Route::get('movimientoBS', [MovimientoController::class, 'indexBS'])->name('movimientoBS.index');
+    Route::get('movimientoBS/{fecha}', [MovimientoController::class, 'indexBSdate'])->name('movimientoBSdate.index');
+    Route::get('movimientoUSD', [MovimientoController::class, 'indexUSD'])->name('movimientoUSD.index');
+    Route::get('movimientoUSD/{fecha}', [MovimientoController::class, 'indexUSDdate'])->name('movimientoUSDdate.index');
 
+
+    Route::post('movimiento', [MovimientoController::class, 'store'])->name('movimiento.store');
+    Route::delete('movimiento/{id}', [MovimientoController::class, 'destroy'])->name('movimiento.destroy');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
