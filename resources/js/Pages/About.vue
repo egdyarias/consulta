@@ -1,5 +1,5 @@
 <template>
-  <Head title="About us" />
+  <Head title="Validación" />
 
   <AuthenticatedLayout>
     <template #header>

@@ -2,13 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\consulta;
 use App\Models\expediente;
 use App\Models\paciente;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class PacienteController extends Controller
 {
+
+    public function dashboard(){
+
+    $hoy = Carbon::today();
+    $resultado = [];
+    
+    for ($i = 4; $i >= 0; $i--) {
+        $fecha = $hoy->copy()->subDays($i);
+        $fechaStr = $fecha->format('Y-m-d');
+
+        $total = consulta::whereDate('created_at', $fecha)->count();
+        
+        $resultado[] = $total;
+    }
+    
+
+    return Inertia::render('Dashboard', [
+        'pacientes' => paciente::count(),
+        'consultas' => consulta::count(),
+        'numConsultas' => $resultado
+    ]);
+
+    }
+
     public function index(Request $request)
     {
         $query = paciente::query();

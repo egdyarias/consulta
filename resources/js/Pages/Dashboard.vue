@@ -48,10 +48,14 @@
                 </div>
             </div>
             
-            
-          
         </div>
 
+        <div class="text-center font-black text-gray-800">Consultas Por Día.</div>
+        <div class="flex justify-center">
+            <div class="max-w-[80vh] min-w-[80vh]">
+                <VueApexCharts type="bar" :series="chartSeries" :options="chartOptions" />
+            </div>
+        </div>
     </div>
   </AuthenticatedLayout>
 </template>
@@ -59,11 +63,47 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import VueApexCharts from 'vue3-apexcharts';
 
 const props = defineProps({
   pacientes: Object,
   consultas: Object,
+  numConsultas: Object,
 })
+
+function obtenerUltimos5Dias() {
+    const hoy = new Date();
+    const dias = [];
+    
+    for (let i = 4; i >= 0; i--) {
+        const fecha = new Date();
+        fecha.setDate(hoy.getDate() - i);
+        const dia = String(fecha.getDate()).padStart(2, '0');
+        const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+        dias.push(`${dia}-${mes}`);
+    }
+    
+    return dias;
+}
+
+let dias = obtenerUltimos5Dias();
+let numConsultas = props.numConsultas;
+
+const chartSeries = ref([{
+    name:'sales',
+    data:  numConsultas,
+}
+])
+
+const chartOptions = ref({
+    xaxis:{
+        categories:  dias
+    }
+}
+)
+
+
 
 localStorage.setItem('validacion', JSON.stringify(false));
 </script>

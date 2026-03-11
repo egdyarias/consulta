@@ -28,14 +28,10 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', [
-        'pacientes' => paciente::count(),
-        'consultas' => consulta::count(),
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard', [PacienteController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/about', fn () => Inertia::render('About'))->name('about');
     Route::get('/consolidado', fn () => Inertia::render('consolidado'))->name('consolidado');
     Route::post('/consolidado/verify', [ConsolidadoController::class, 'verify'])->name('consolidado.verify');
