@@ -62,6 +62,12 @@
         </li>
       </ul>
     </div>
+    <div class="fixed bottom-2 w-64">
+      <div class="px-6 py-3 border-t border-sky-600">
+        <p class="text-sm font-bold text-center text-sky-200">Ing. Egdy A. Arias M.</p>
+        <p class="text-sm font-bold text-center text-sky-200"> @egdy_arias - +58 4246375090</p>
+      </div>
+    </div>
   </aside>
 </template>
 
