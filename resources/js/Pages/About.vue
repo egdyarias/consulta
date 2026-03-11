@@ -56,6 +56,7 @@ async function submit() {
     // Usamos axios global configurado en resources/js/bootstrap.js
     await window.axios.post('/consolidado/verify', { password: password.value });
     // Si todo OK, redirigimos al consolidado
+    localStorage.setItem('validacion', JSON.stringify(true));
     window.location.href = '/consolidado';
   } catch (e) {
     if (e.response && e.response.status === 422 && e.response.data && e.response.data.password) {

@@ -116,4 +116,6 @@ const buscarFecha = () => {
     },
   });
 }
+
+localStorage.setItem('validacion', JSON.stringify(false));
 </script>

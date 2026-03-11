@@ -72,4 +72,6 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+localStorage.setItem('validacion', JSON.stringify(false));
 </script>

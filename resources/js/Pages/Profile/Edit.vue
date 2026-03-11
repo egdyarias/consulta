@@ -9,6 +9,8 @@ defineProps({
     mustVerifyEmail: Boolean,
     status: String,
 });
+
+localStorage.setItem('validacion', JSON.stringify(false));
 </script>
 
 <template>

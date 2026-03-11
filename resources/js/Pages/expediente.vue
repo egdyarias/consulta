@@ -408,4 +408,6 @@ function formatearFecha(fechaISO) {
   return `${dia}-${mes}-${año}`;
 }
 
+localStorage.setItem('validacion', JSON.stringify(false));
+
 </script>

@@ -51,4 +51,13 @@
 import DarkButton from '@/Components/DarkButton.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { onMounted, ref } from 'vue';
+
+const validacion = ref(JSON.parse(localStorage.getItem('validacion')) || false);
+
+onMounted(() => {
+  if (!validacion.value) {
+    window.location.href = '/dashboard';
+  }
+});
 </script>

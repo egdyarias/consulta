@@ -64,4 +64,6 @@ const props = defineProps({
   pacientes: Object,
   consultas: Object,
 })
+
+localStorage.setItem('validacion', JSON.stringify(false));
 </script>

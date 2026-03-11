@@ -377,4 +377,6 @@ const deleteCargo = () =>
   });
 }
 
+localStorage.setItem('validacion', JSON.stringify(false));
+
 </script>

@@ -4,7 +4,15 @@
 
   <AuthenticatedLayout>
     <template #header>
-      <div class="text-center mb-4">
+      <div class="text-center flex items-center justify-center mb-4">
+        <Link :href="route('consolidado')">
+          <DarkButton class="mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+            </svg>
+          </DarkButton>
+        </Link>
         Movimientos del día: {{ fecha }}
         <DarkButton @click="buscarFecha()" class="ml-4">Buscar</DarkButton>
       </div>
@@ -195,7 +203,7 @@ import InputError from '@/Components/InputError.vue';
 import Modal from '@/Components/Modal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps({
   movimientos: Object,
@@ -291,5 +299,13 @@ const deleteMovimiento = () =>
     }
   });
 }
+
+const validacion = ref(JSON.parse(localStorage.getItem('validacion')) || false);
+
+onMounted(() => {
+  if (!validacion.value) {
+    window.location.href = '/dashboard';
+  }
+});
 
 </script>
