@@ -7,9 +7,9 @@
       Consolidado
     </template>
 
-    <div class="p-4 bg-white rounded-lg shadow-xs">
+    <div class="p-4 bg-white rounded-lg shadow-xs flex items-center justify-center">
       <Link :href="route('consultas.index')">
-        <DarkButton class="mr-4 flex justify-center items-center gap-2">
+        <DarkButton class="mt-4 mr-4 flex justify-center items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
             <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
             <path fill-rule="evenodd"
@@ -44,6 +44,12 @@
         </DarkButton>
       </Link>
     </div>
+    <div class="text-center font-black text-gray-800 p-4 text-xl">Balances.</div>
+    <div class="p-4 bg-white rounded-lg shadow-xs flex items-center justify-center">
+      <div class="max-w-[60vh] min-w-[60vh]">
+        <VueApexCharts type="pie" :series="chartSeries" :options="chartOptions" />
+      </div>
+    </div>
   </AuthenticatedLayout>
 </template>
 
@@ -52,6 +58,11 @@ import DarkButton from '@/Components/DarkButton.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { onMounted, ref } from 'vue';
+import VueApexCharts from 'vue3-apexcharts';
+
+const props = defineProps({
+  consolidados: Object,
+})
 
 const validacion = ref(JSON.parse(localStorage.getItem('validacion')) || false);
 
@@ -60,4 +71,14 @@ onMounted(() => {
     window.location.href = '/dashboard';
   }
 });
+
+let consolidados = props.consolidados
+
+const chartSeries = ref(consolidados)
+
+const chartOptions = ref({
+    labels:['BS', 'USD']
+}
+)
+
 </script>

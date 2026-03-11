@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [PacienteController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/about', fn () => Inertia::render('About'))->name('about');
-    Route::get('/consolidado', fn () => Inertia::render('consolidado'))->name('consolidado');
+    Route::get('/consolidado', [ConsolidadoController::class, 'consolidado'])->name('consolidado');
     Route::post('/consolidado/verify', [ConsolidadoController::class, 'verify'])->name('consolidado.verify');
     
     Route::get('pacientes', [PacienteController::class, 'index'])->name('pacientes.index');

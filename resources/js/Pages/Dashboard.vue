@@ -91,7 +91,7 @@ let dias = obtenerUltimos5Dias();
 let numConsultas = props.numConsultas;
 
 const chartSeries = ref([{
-    name:'sales',
+    name:'Consultas',
     data:  numConsultas,
 }
 ])
