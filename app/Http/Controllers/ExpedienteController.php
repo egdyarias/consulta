@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\consulta;
 use App\Models\expediente;
+use App\Models\memoria;
 use App\Models\paciente;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,6 +16,7 @@ class ExpedienteController extends Controller
             'paciente' => paciente::where('id', $id)->get(),
             'expediente' => expediente::where('paciente_id', $id)->get(),
             'consultas' => consulta::where('paciente_id', $id)->paginate(3),
+            'memorias' => memoria::where('paciente_id', $id)->paginate(3)
         ]);
     }
 

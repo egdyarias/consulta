@@ -6,6 +6,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConsolidadoController;
+use App\Http\Controllers\MemoriaController;
 use App\Http\Controllers\MovimientoController;
 use App\Models\consulta;
 use App\Models\paciente;
@@ -46,6 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::post('consultas', [ExpedienteController::class, 'storeconsulta'])->name('consultas.store');
     Route::patch('consultas/{id}', [ExpedienteController::class, 'updateconsulta'])->name('consultas.update');
     Route::delete('consultas/{id}', [ExpedienteController::class, 'destroyconsulta'])->name('consultas.destroy');
+    Route::post('pacientes/memoria', [MemoriaController::class, 'memoriastore'])->name('memoria.store');
+    Route::delete('pacientes/memoria/{memoria}', [MemoriaController::class, 'memoriadestroy'])->name('memoria.destroy');
+
 
     Route::get('consultas', [ConsultaController::class, 'index'])->name('consultas.index');
     Route::get('consultasfecha/{fecha}', [ConsultaController::class, 'indexdate'])->name('consultas.fecha');
